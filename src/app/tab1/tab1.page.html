@@ -7,12 +7,128 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="chart-div">
-    <canvas
-      baseChart
-      [type]="'line'"
-      [datasets]="datasets"
-      [options]="options">
-    </canvas>
+  <div class="realtime-div">
+    <div class="chart-div">
+      <canvas id="realtimeChart0">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 0)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 0)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="chart-div">
+      <canvas id="realtimeChart1">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 1)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 1)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="chart-div">
+      <canvas id="realtimeChart2">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 2)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 2)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="chart-div">
+      <canvas id="realtimeChart3">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 3)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 3)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="chart-div">
+      <canvas id="realtimeChart4">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 4)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 4)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div><div class="chart-div">
+      <canvas id="realtimeChart5">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 5)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 5)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="chart-div">
+      <canvas id="realtimeChart6">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 6)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 6)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="chart-div">
+      <canvas id="realtimeChart7">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 7)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 7)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="chart-div">
+      <canvas id="realtimeChart8">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 8)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 9)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="chart-div">
+      <canvas id="realtimeChart9">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 9)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 9)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+  <div>
+
   </div>
 </ion-content>
