@@ -3,6 +3,8 @@ import { Chart, ChartDataset, ChartOptions } from 'chart.js';
 import 'chartjs-adapter-luxon';
 import StreamingPlugin from 'chartjs-plugin-streaming';
 import ZoomPlugin from 'chartjs-plugin-zoom';
+import { Utils } from '../../utils';
+import axios, { Axios } from 'axios';
 
 Chart.register(ZoomPlugin, StreamingPlugin);
 
@@ -11,83 +13,173 @@ Chart.register(ZoomPlugin, StreamingPlugin);
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
+
+
 export class Tab1Page {
+  public serverUrl = "https://trinityaether.com/sensor/";
+  public chartColors = [
+    'rgb(255, 99, 132)',
+    'rgb(255, 159, 64)',
+    'rgb(255, 205, 86)',
+    'rgb(75, 192, 192)',
+    'rgb(54, 162, 235)',
+    'rgb(153, 102, 255)',
+    'rgb(201, 203, 207)',
+    'rgb(255, 192, 203)',
+    'rgb(165, 42, 42)',
+    'rgb(0, 128, 128)'
+  ];
 
-  public chartColors = {
-    red: 'rgb(255, 99, 132)',
-    orange: 'rgb(255, 159, 64)',
-    yellow: 'rgb(255, 205, 86)',
-    green: 'rgb(75, 192, 192)',
-    blue: 'rgb(54, 162, 235)',
-    purple: 'rgb(153, 102, 255)',
-    grey: 'rgb(201, 203, 207)',
-    pink: 'rgb(255, 192, 203)',
-    brown: 'rgb(165, 42, 42)',
-    teal: 'rgb(0, 128, 128)'
-  };
+  public configRealtime: { [key: string]: any } = {};
+  public realtimeChart: { [key: string]: any } = {};
 
-  constructor() {}
-
-  onRefresh(chart: Chart){
-    chart.data.datasets.forEach((dataset: ChartDataset) => {
-      dataset.data.push({
-        x: Date.now(),
-        y: Math.random()
-      });
-    });
+  constructor(
+  ) {
   }
 
+  ngOnInit(){
+    this.createRealtimeConfig();
+    this.createRealtimeChart();
+  }
 
+  setMinValue(event: Event, chartNumber: number) {
+    const targetElement = event.target as HTMLInputElement;
+    this.configRealtime[chartNumber].options.scales.y.min =
+      parseInt(targetElement.value);
+    this.realtimeChart[chartNumber].update();
+  }
 
-  public datasets: ChartDataset[] = [{
-    label: 'Dataset 1',
-    backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    borderColor: 'rgb(255, 99, 132)',
-    borderDash: [8, 4],
-    fill: true,
-    data: []
-  }];
+  setMaxValue(event: Event, chartNumber: number) {
+    const targetElement = event.target as HTMLInputElement;
+    this.configRealtime[chartNumber].options.scales.y.max =
+      parseInt(targetElement.value);
+  }
 
-  public options: ChartOptions = {
-    scales: {
-      x: {
-        type: 'realtime',
-        realtime: {
-          delay: 2000,
-          onRefresh: this.onRefresh
-        },
-      },
-      y: {
-        title: {
-          display: true,
-          text: 'Value'
-        }
+  onRefresh(chart:any) {
+
+    const url = "http://localhost/routes/actions/getData.php";
+    let table = "SN" + (chart.id + 1);
+    let now = new Date().getTime();
+
+    axios.get(url, {
+      params: {
+        table: table,
+        time: now.toString(),
       }
-    },
-    interaction: {
-      intersect: false
-    },
-    plugins: {
-      zoom: {
-        pan: {
-          enabled: true,
-          mode: 'x'
+    })
+    .then(function (response) {
+      let addvalue = 0;
+      if (response.data == 0) {
+        addvalue = 0;
+      } else {
+        addvalue = response.data[0][1];
+      }
+      chart.data.datasets.forEach((dataset: ChartDataset) => {
+        dataset.data.push({
+          x: Date.now(),
+          y: addvalue
+        });
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+    .finally(function () {
+      // always executed
+    });
+
+
+  }
+
+  createConfig(sensorLabel: string, borderColor: string) {
+    return {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: sensorLabel,
+                backgroundColor: Utils.transparentize(borderColor, 0.5),
+                borderColor: borderColor,
+                fill: false,
+                lineTension: 0,
+                borderDash: [8, 4],
+                data: [{x: 0, y: 0}]
+            }]
         },
-        zoom: {
-          pinch: {
-            enabled: true
+        options: {
+          title: {
+            display: true,
+            text: 'Select Sensor'
           },
-          wheel: {
-            enabled: true
+          scales: {
+            x: {
+              type: 'realtime',
+              realtime: {
+                unit: 'second',
+                displayFormats: {
+                  second: 'YYYY-MM-DD HH:mm:ss'
+                },
+                tooltipFormat: 'YYYY-MM-DD HH:mm:ss',
+                duration: 20000,
+                refresh: 1000,
+                delay: 2000,
+                onRefresh: this.onRefresh
+              }
+            },
+            y: {
+              type: 'linear',
+              display: true,
+              // ticks: {
+              //     min: 0, // minimum value
+              //     max: 0 // maximum value
+              // },
+              scaleLabel: {
+                display: true,
+                labelString: 'value'
+              }
+            },
           },
-          mode: 'x'
-        },
-        limits: {
-          x: {
+          interaction: {
+            intersect: false
+          },
+          plugins: {
+            zoom: {
+              pan: {
+                enabled: true,
+                mode: 'x'
+              },
+              zoom: {
+                pinch: {
+                  enabled: true
+                },
+                wheel: {
+                  enabled: true
+                },
+                mode: 'x'
+              },
+              limits: {
+                x: {
+                  minDelay: 0,
+                  maxDelay: 4000,
+                  minDuration: 1000,
+                  maxDuration: 20000
+                }
+              }
+            }
           }
         }
-      }
+    };
+  }
+
+  createRealtimeConfig(){
+    for(let i = 0; i < 10; i++){
+      this.configRealtime[i] = this.createConfig('Sensor' + i, this.chartColors[i]);
     }
-  };
+  }
+
+  createRealtimeChart(){
+    for(let i = 0; i < 10; i++){
+      this.realtimeChart[i] = new Chart("realtimeChart" + i, this.configRealtime[i]);
+    }
+  }
 
 }
