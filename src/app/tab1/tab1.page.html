@@ -1,22 +1,28 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
+  <ion-row>
+    <ion-col size="7" class="display-flex">
+      <img src="../../assets/icon.webp"> <p class="logo-title">NEXUS</p>
+    </ion-col>
+    <ion-col size="5">
+      <ion-select [(ngModel)] = "chartType">
+        <ion-select-option value="fixed">Fixed</ion-select-option>
+        <ion-select-option value="realtime">Realtime</ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="realtime-div">
+  <div class="realtime-div" [ngClass]="chartType == 'realtime' ? '' : 'display-none'">
     <div class="chart-div">
       <canvas id="realtimeChart0">
       </canvas>
       <ion-row>
         <ion-col size="6">
-          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 0)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMinValue" (input)="setMinValue($event, 0)"></ion-input>
         </ion-col>
         <ion-col size="6">
-          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 0)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setMaxValue($event, 0)"></ion-input>
         </ion-col>
       </ion-row>
     </div>
@@ -25,10 +31,10 @@
       </canvas>
       <ion-row>
         <ion-col size="6">
-          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 1)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMinValue" (input)="setMinValue($event, 1)"></ion-input>
         </ion-col>
         <ion-col size="6">
-          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 1)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setMaxValue($event, 1)"></ion-input>
         </ion-col>
       </ion-row>
     </div>
@@ -37,10 +43,10 @@
       </canvas>
       <ion-row>
         <ion-col size="6">
-          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 2)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMinValue" (input)="setMinValue($event, 2)"></ion-input>
         </ion-col>
         <ion-col size="6">
-          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 2)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setMaxValue($event, 2)"></ion-input>
         </ion-col>
       </ion-row>
     </div>
@@ -49,10 +55,10 @@
       </canvas>
       <ion-row>
         <ion-col size="6">
-          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 3)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMinValue" (input)="setMinValue($event, 3)"></ion-input>
         </ion-col>
         <ion-col size="6">
-          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 3)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setMaxValue($event, 3)"></ion-input>
         </ion-col>
       </ion-row>
     </div>
@@ -61,10 +67,10 @@
       </canvas>
       <ion-row>
         <ion-col size="6">
-          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 4)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMinValue" (input)="setMinValue($event, 4)"></ion-input>
         </ion-col>
         <ion-col size="6">
-          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 4)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setMaxValue($event, 4)"></ion-input>
         </ion-col>
       </ion-row>
     </div><div class="chart-div">
@@ -72,10 +78,10 @@
       </canvas>
       <ion-row>
         <ion-col size="6">
-          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 5)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMinValue" (input)="setMinValue($event, 5)"></ion-input>
         </ion-col>
         <ion-col size="6">
-          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 5)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setMaxValue($event, 5)"></ion-input>
         </ion-col>
       </ion-row>
     </div>
@@ -84,10 +90,10 @@
       </canvas>
       <ion-row>
         <ion-col size="6">
-          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 6)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMinValue" (input)="setMinValue($event, 6)"></ion-input>
         </ion-col>
         <ion-col size="6">
-          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 6)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setMaxValue($event, 6)"></ion-input>
         </ion-col>
       </ion-row>
     </div>
@@ -96,10 +102,10 @@
       </canvas>
       <ion-row>
         <ion-col size="6">
-          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 7)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMinValue" (input)="setMinValue($event, 7)"></ion-input>
         </ion-col>
         <ion-col size="6">
-          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 7)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setMaxValue($event, 7)"></ion-input>
         </ion-col>
       </ion-row>
     </div>
@@ -108,10 +114,10 @@
       </canvas>
       <ion-row>
         <ion-col size="6">
-          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 8)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMinValue" (input)="setMinValue($event, 8)"></ion-input>
         </ion-col>
         <ion-col size="6">
-          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 9)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setMaxValue($event, 9)"></ion-input>
         </ion-col>
       </ion-row>
     </div>
@@ -120,15 +126,434 @@
       </canvas>
       <ion-row>
         <ion-col size="6">
-          <ion-input placeholder="InputMinValue" (input)="setMinValue($event, 9)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMinValue" (input)="setMinValue($event, 9)"></ion-input>
         </ion-col>
         <ion-col size="6">
-          <ion-input placeholder="InputMaxValue" (input)="setMaxValue($event, 9)"></ion-input>
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setMaxValue($event, 9)"></ion-input>
         </ion-col>
       </ion-row>
     </div>
   </div>
-  <div>
-
+  <div class="fixed-div" [ngClass]="chartType == 'fixed' ? '' : 'display-none'">
+    <div class="chart-div">
+      <canvas id="fixedChart0">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="Select start date and time" id="open-modalmin0" readonly [value]="(date[0]['min'] ? (date[0]['min'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmin0" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[0]['min']"
+                size="cover"
+                [showDefaultButtons]="true"
+                (ngModelChange)="changeDateInput($event, 0)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="Select end date and time" id="open-modalmax0" readonly [value]="(date[0]['max'] ? (date[0]['max'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmax0" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[0]['max']"
+                size="cover"
+                [showDefaultButtons]="true"
+                (ngModelChange)="changeDateInput($event, 0)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="InputMinValue" (input)="setFixedMinValue($event, 0)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setFixedMaxValue($event, 0)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="chart-div">
+      <canvas id="fixedChart1">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="Select end date and time" id="open-modalmin1" readonly [value]="(date[1]['min'] ? (date[1]['min'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmin1" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[1]['min']"
+                size="cover"
+                [showDefaultButtons]="true"
+                (ngModelChange)="changeDateInput($event, 1)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="Select end date and time" id="open-modalmax1" readonly [value]="(date[1]['max'] ? (date[1]['max'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmax1" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[1]['max']"
+                size="cover"
+                [showDefaultButtons]="true",
+                (ngModelChange)="changeDateInput($event, 1)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input inputmode="number" placeholder="InputMinValue" (input)="setFixedMinValue($event, 1)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setFixedMaxValue($event, 1)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="chart-div">
+      <canvas id="fixedChart2">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="Select start date and time" id="open-modalmin2" readonly [value]="(date[2]['min'] ? (date[2]['min'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmin2" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[2]['min']"
+                size="cover"
+                [showDefaultButtons]="true"
+                (ngModelChange)="changeDateInput($event, 2)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="Select end date and time" id="open-modalmax2" readonly [value]="(date[2]['max'] ? (date[2]['max'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmax2" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[2]['max']"
+                size="cover"
+                [showDefaultButtons]="true"
+                (ngModelChange)="changeDateInput($event, 2)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input inputmode="number" placeholder="InputMinValue" (input)="setFixedMinValue($event, 2)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setFixedMaxValue($event, 2)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="chart-div">
+      <canvas id="fixedChart3">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="Select start date and time" id="open-modalmin3" readonly [value]="(date[3]['min'] ? (date[3]['min'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmin3" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[3]['min']"
+                size="cover"
+                [showDefaultButtons]="true"
+                (ngModelChange)="changeDateInput($event, 3)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="Select end date and time" id="open-modalmax3" readonly [value]="(date[3]['max'] ? (date[3]['max'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmax3" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[3]['max']"
+                size="cover"
+                [showDefaultButtons]="true"
+                (ngModelChange)="changeDateInput($event, 3)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input inputmode="number" placeholder="InputMinValue" (input)="setFixedMinValue($event, 3)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setFixedMaxValue($event, 3)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="chart-div">
+      <canvas id="fixedChart4">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="Select start date and time" id="open-modalmin4" readonly [value]="(date[4]['min'] ? (date[4]['min'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmin4" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[4]['min']"
+                size="cover"
+                [showDefaultButtons]="true"
+                (ngModelChange)="changeDateInput($event, 4)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="Select end date and time" id="open-modalmax4" readonly [value]="(date[4]['max'] ? (date[4]['max'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmax4" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[4]['max']"
+                size="cover"
+                [showDefaultButtons]="true"
+                (ngModelChange)="changeDateInput($event, 4)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input inputmode="number" placeholder="InputMinValue" (input)="setFixedMinValue($event, 4)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setFixedMaxValue($event, 4)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="chart-div">
+      <canvas id="fixedChart5">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="Select start date and time" id="open-modalmin5" readonly [value]="(date[5]['min'] ? (date[5]['min'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmin5" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[5]['min']"
+                size="cover"
+                [showDefaultButtons]="true"
+                (ngModelChange)="changeDateInput($event, 5)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="Select end date and time" id="open-modalmax5" readonly [value]="(date[5]['max'] ? (date[5]['max'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmax5" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[5]['max']"
+                size="cover"
+                [showDefaultButtons]="true"
+                (ngModelChange)="changeDateInput($event, 5)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input inputmode="number" placeholder="InputMinValue" (input)="setFixedMinValue($event, 5)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setFixedMaxValue($event, 5)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="chart-div">
+      <canvas id="fixedChart6">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="Select start date and time" id="open-modalmin6" readonly [value]="(date[6]['min'] ? (date[6]['min'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmin6" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[6]['min']"
+                size="cover"
+                [showDefaultButtons]="true"
+                (ngModelChange)="changeDateInput($event, 6)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="Select end date and time" id="open-modalmax6" readonly [value]="(date[6]['max'] ? (date[6]['max'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmax6" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[6]['max']"
+                size="cover"
+                [showDefaultButtons]="true"
+                (ngModelChange)="changeDateInput($event, 6)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input inputmode="number" placeholder="InputMinValue" (input)="setFixedMinValue($event, 6)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setFixedMaxValue($event, 6)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="chart-div">
+      <canvas id="fixedChart7">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="Select start date and time" id="open-modalmin7" readonly [value]="(date[7]['min'] ? (date[7]['min'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmin7" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[7]['min']"
+                size="cover"
+                [showDefaultButtons]="true"
+                (ngModelChange)="changeDateInput($event, 7)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="Select end date and time" id="open-modalmax7" readonly [value]="(date[7]['max'] ? (date[7]['max'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmax7" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[7]['max']"
+                size="cover"
+                [showDefaultButtons]="true"
+                (ngModelChange)="changeDateInput($event, 7)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input inputmode="number" placeholder="InputMinValue" (input)="setFixedMinValue($event, 7)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setFixedMaxValue($event, 7)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="chart-div">
+      <canvas id="fixedChart8">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="Select start date and time" id="open-modalmin8" readonly [value]="(date[8]['min'] ? (date[8]['min'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmin8" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[8]['min']"
+                size="cover"
+                [showDefaultButtons]="true"
+                (ngModelChange)="changeDateInput($event, 8)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="Select end date and time" id="open-modalmax8" readonly [value]="(date[8]['max'] ? (date[8]['max'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmin8" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[8]['max']"
+                size="cover"
+                [showDefaultButtons]="true"
+                (ngModelChange)="changeDateInput($event, 8)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input inputmode="number" placeholder="InputMinValue" (input)="setFixedMinValue($event, 8)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setFixedMaxValue($event, 8)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="chart-div">
+      <canvas id="fixedChart9">
+      </canvas>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input placeholder="Select start date and time" id="open-modalmin9" readonly [value]="(date[9]['min'] ? (date[9]['min'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmin9" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[9]['min']"
+                size="cover"
+                [showDefaultButtons]="true"
+                (ngModelChange)="changeDateInput($event, 9)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input placeholder="Select end date and time" id="open-modalmax9" readonly [value]="(date[9]['max'] ? (date[9]['max'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
+          <ion-modal trigger="open-modalmax9" [cssClass]="'bottom-end date-modal'">
+            <ng-template>
+              <ion-datetime
+                displayFormat="MM-DD-YYYY HH:mm"
+                presentation="date-time"
+                [(ngModel)]="date[9]['max']"
+                size="cover"
+                [showDefaultButtons]="true"
+                (ngModelChange)="changeDateInput($event, 9)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input inputmode="number" placeholder="InputMinValue" (input)="setFixedMinValue($event, 9)"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input inputmode="number" placeholder="InputMaxValue" (input)="setFixedMaxValue($event, 9)"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
   </div>
 </ion-content>
