@@ -40,7 +40,7 @@ export class Tab1Page {
 
   public chartType:string = "realtime";
 
-  public url = "http://localhost/routes/actions/getData.php";
+  public url = "http://192.168.1.114/routes/actions/getData.php";
 
   constructor(
   ) {
@@ -91,7 +91,7 @@ export class Tab1Page {
     let table = "SN" + (chart.id + 1);
     let now = new Date().getTime();
 
-    axios.get('http://localhost/routes/actions/getData.php', {
+    axios.get('http://192.168.1.114/routes/actions/getData.php', {
       params: {
         table: table,
         time: now.toString(),
@@ -127,7 +127,7 @@ export class Tab1Page {
     let table = "SN" + (id + 1);
     var start = Date.parse(this.date[id]["min"]);
     var end = Date.parse(this.date[id]["max"]);
-    axios.get('http://localhost/routes/actions/getData.php', {
+    axios.get('http://192.168.1.114/routes/actions/getData.php', {
       params: {
         table: table,
         starttime: start,
@@ -351,7 +351,7 @@ export class Tab1Page {
     var end = Date.now();
     for (var i = 0; i < 10; i++) {
       let table = "SN" + (i + 1);
-      axios.get("http://localhost/routes/actions/getData.php", {
+      axios.get("http://192.168.1.114/routes/actions/getData.php", {
         params: {
           table: table,
           starttime: start,
