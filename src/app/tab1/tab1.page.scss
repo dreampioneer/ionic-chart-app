@@ -3,3 +3,36 @@
   padding: 10px;
   box-shadow:  0px 5px 15px 0px rgba(0, 0, 0, 0.35);
 }
+
+ion-label {
+  width: 100%;
+  height: 100%;
+  padding-left: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+ion-input{
+  border: 2px solid #aaaaaa;
+}
+
+ion-label{
+  border: 2px solid #aaaaaa;
+}
+
+.logo-title {
+  height: 1.5rem;
+  font-size: 1.5rem;
+  color: #f7c418;
+  font-weight: bold;
+  margin: auto 0px auto 15px;
+}
+
+.img{
+  margin-left: 10px;
+}
+
+ion-select{
+  border: 2px solid #aaaaaa;
+  background-color: #ffffff;
+}
