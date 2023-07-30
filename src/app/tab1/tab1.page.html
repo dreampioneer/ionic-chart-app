@@ -205,7 +205,7 @@
                 presentation="date-time"
                 [(ngModel)]="date[1]['max']"
                 size="cover"
-                [showDefaultButtons]="true",
+                [showDefaultButtons]="true"
                 (ngModelChange)="changeDateInput($event, 1)"
               ></ion-datetime>
             </ng-template>
@@ -492,7 +492,7 @@
         </ion-col>
         <ion-col size="6">
           <ion-input placeholder="Select end date and time" id="open-modalmax8" readonly [value]="(date[8]['max'] ? (date[8]['max'] | date: 'MM-dd-YYYY HH:mm') : '')"></ion-input>
-          <ion-modal trigger="open-modalmin8" [cssClass]="'bottom-end date-modal'">
+          <ion-modal trigger="open-modalmax8" [cssClass]="'bottom-end date-modal'">
             <ng-template>
               <ion-datetime
                 displayFormat="MM-DD-YYYY HH:mm"

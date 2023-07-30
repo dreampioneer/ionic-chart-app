@@ -5,8 +5,9 @@ import StreamingPlugin from 'chartjs-plugin-streaming';
 import ZoomPlugin from 'chartjs-plugin-zoom';
 import { Utils } from '../../utils';
 import axios, { Axios } from 'axios';
+import gradient from 'chartjs-plugin-gradient';
 
-Chart.register(ZoomPlugin, StreamingPlugin);
+Chart.register(ZoomPlugin, StreamingPlugin, gradient);
 
 @Component({
   selector: 'app-tab1',
@@ -16,19 +17,27 @@ Chart.register(ZoomPlugin, StreamingPlugin);
 
 
 export class Tab1Page {
-  public serverUrl = "https://trinityaether.com/sensor/";
+  // public serverUrl = "http://cies-western-eng.ca/sensor/";
 
   public chartColors = [
     'rgb(255, 99, 132)',
     'rgb(255, 159, 64)',
-    'rgb(255, 205, 86)',
-    'rgb(75, 192, 192)',
-    'rgb(54, 162, 235)',
-    'rgb(153, 102, 255)',
-    'rgb(201, 203, 207)',
-    'rgb(255, 192, 203)',
-    'rgb(165, 42, 42)',
-    'rgb(0, 128, 128)'
+    'rgb(255, 99, 132)',
+    'rgb(255, 159, 64)',
+    'rgb(255, 99, 132)',
+    'rgb(255, 159, 64)',
+    'rgb(255, 99, 132)',
+    'rgb(255, 159, 64)',
+    'rgb(255, 99, 132)',
+    'rgb(255, 159, 64)',
+    // 'rgb(255, 205, 86)',
+    // 'rgb(75, 192, 192)',
+    // 'rgb(54, 162, 235)',
+    // 'rgb(153, 102, 255)',
+    // 'rgb(201, 203, 207)',
+    // 'rgb(255, 192, 203)',
+    // 'rgb(165, 42, 42)',
+    // 'rgb(0, 128, 128)'
   ];
   public date: {max: string, min: string}[] = [];
 
@@ -40,19 +49,19 @@ export class Tab1Page {
 
   public chartType:string = "realtime";
 
-  public url = "http://192.168.1.114/routes/actions/getData.php";
+  // public url = "http://cies-western-eng.ca/sensor/routes/actions/getData.php";
 
   constructor(
   ) {
     this.createDateData();
   }
 
-  ngOnInit(){
-    this.createRealtimeConfig();
+  async ngOnInit(){
+    await this.createRealtimeConfig();
     this.createRealtimeChart();
-    this.createFixedConfig();
+    await this.createFixedConfig();
     this.createFixedChart();
-    this.initialFixedChart();
+    await this.initialFixedChart();
   }
 
   setMinValue(event: Event, chartNumber: number) {
@@ -82,22 +91,22 @@ export class Tab1Page {
     this.fixedChart[chartNumber].update();
   }
 
-  changeDateInput(event: Event, chartNumber: number){
-    this.getFixedData(chartNumber);
+  async changeDateInput(event: Event, chartNumber: number){
+    await this.getFixedData(chartNumber);
   }
 
-  onRefresh(chart:any) {
+  async onRefresh(chart:any) {
     console.log("onRefresh");
     let table = "SN" + (chart.id + 1);
     let now = new Date().getTime();
 
-    axios.get('http://192.168.1.114/routes/actions/getData.php', {
+    await axios.get('http://cies-western-eng.ca/sensor/routes/actions/getData.php', {
       params: {
         table: table,
         time: now.toString(),
       }
     })
-    .then(function (response) {
+    .then( function (response) {
       let addvalue = 0;
       if (response.data == 0) {
         addvalue = 0;
@@ -123,11 +132,17 @@ export class Tab1Page {
     });
   }
 
-  getFixedData(id: number){
+  async getFixedData(id: number){
     let table = "SN" + (id + 1);
+    if(!this.date[id]["min"] || !this.date[id]["max"]){
+      return;
+    }
     var start = Date.parse(this.date[id]["min"]);
     var end = Date.parse(this.date[id]["max"]);
-    axios.get('http://192.168.1.114/routes/actions/getData.php', {
+    if(end < start){
+      return;
+    }
+    await axios.get('http://cies-western-eng.ca/sensor/routes/actions/getData.php', {
       params: {
         table: table,
         starttime: start,
@@ -137,8 +152,6 @@ export class Tab1Page {
     .then( (response) => {
       var labels = response.data.map((item: { timestamp: any; }) => item.timestamp);
       var datas = response.data.map((item: { value: any; }) => item.value);
-      console.log(labels);
-      console.log(datas);
       this.configFixed[id].data.labels = labels;
       this.configFixed[id].data.datasets[0].data = datas;
       this.fixedChart[id].update();
@@ -157,18 +170,27 @@ export class Tab1Page {
     }
   }
 
-  createConfig(sensorLabel: string, borderColor: string) {
+  async createConfig(sensorLabel: string, borderColor: string) {
     return {
         type: 'line',
         data: {
             datasets: [{
                 label: sensorLabel,
-                backgroundColor: Utils.transparentize(borderColor, 0.5),
+                // backgroundColor: Utils.transparentize(borderColor, 0.5),
                 borderColor: borderColor,
-                fill: false,
+                fill: true,
                 lineTension: 0,
                 borderDash: [8, 4],
-                data: [{x: 0, y: 0}]
+                data: [{x: 0, y: 0}],
+                gradient: {
+                  backgroundColor: {
+                    axis: 'y',
+                    colors: {
+                      100: 'rgba(255, 0, 0, 0.3)',
+                      0: 'rgba(0, 0, 0, 0.1)'
+                    }
+                  }
+                }
             }]
         },
         options: {
@@ -186,8 +208,8 @@ export class Tab1Page {
                 },
                 tooltipFormat: 'YYYY-MM-DD HH:mm:ss',
                 duration: 20000,
-                refresh: 1000,
-                delay: 2000,
+                refresh: 3000,
+                delay: 3000,
                 onRefresh: this.onRefresh
               }
             },
@@ -236,9 +258,9 @@ export class Tab1Page {
     };
   }
 
-  createRealtimeConfig(){
+  async createRealtimeConfig(){
     for(let i = 0; i < 10; i++){
-      this.configRealtime[i] = this.createConfig('Sensor' + i, this.chartColors[i]);
+      this.configRealtime[i] = await this.createConfig('Sensor' + (i + 1), this.chartColors[i]);
     }
   }
 
@@ -252,12 +274,21 @@ export class Tab1Page {
 '2022-01-19T00:00:00', '2022-01-20T00:00:00', '2022-01-2T00:00:00', '2022-01-22T00:00:00', '2022-01-23T00:00:00', '2022-01-24T00:00:00'],
           datasets: [{
               label: sensorLabel,
-              backgroundColor: Utils.transparentize(borderColor, 0.5),
+              // backgroundColor: Utils.transparentize(borderColor, 0.5),
               borderColor: borderColor,
-              fill: false,
+              fill: true,
               lineTension: 0,
               borderDash: [8, 4],
-              data: [100, 150, 170, 180,130,120,100, 150, 170, 180,130,120,100, 150, 170, 180,130,120,100, 150, 170, 180,130,120]
+              data: [100, 150, 170, 180,130,120,100, 150, 170, 180,130,120,100, 150, 170, 180,130,120,100, 150, 170, 180,130,120],
+              gradient: {
+                backgroundColor: {
+                  axis: 'y',
+                  colors: {
+                    100: 'rgba(255, 0, 0, 0.3)',
+                    0: 'rgba(0, 0, 0, 0.1)'
+                  }
+                }
+              }
           }]
         },
         options: {
@@ -328,9 +359,9 @@ export class Tab1Page {
     };
   }
 
-  createFixedConfig(){
+  async createFixedConfig(){
     for(let i = 0; i < 10; i++){
-      this.configFixed[i] = this.createFConfig('Sensor' + i, this.chartColors[i]);
+      this.configFixed[i] = this.createFConfig('Sensor' + (i + 1), this.chartColors[i]);
     }
   }
 
@@ -346,12 +377,12 @@ export class Tab1Page {
     }
   }
 
-  initialFixedChart() {
+  async initialFixedChart() {
     var start = Date.now() - 24*60*60*1000;
     var end = Date.now();
     for (var i = 0; i < 10; i++) {
       let table = "SN" + (i + 1);
-      axios.get("http://192.168.1.114/routes/actions/getData.php", {
+      await axios.get("http://cies-western-eng.ca/sensor/routes/actions/getData.php", {
         params: {
           table: table,
           starttime: start,
@@ -361,8 +392,6 @@ export class Tab1Page {
       .then((response) => {
         var labels = response.data.map((item: { timestamp: any; }) => item.timestamp);
         var datas = response.data.map((item: { value: any; }) => item.value);
-        console.log(labels);
-        console.log(datas);
         this.configFixed[i].data.labels = labels;
         this.configFixed[i].data.datasets[0].data = datas;
         this.fixedChart[i].update();

@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.nexus.chart1;
 
 import com.getcapacitor.BridgeActivity;
 
