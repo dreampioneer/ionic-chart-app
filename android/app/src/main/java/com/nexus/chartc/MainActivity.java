@@ -1,4 +1,4 @@
-package com.nexus.chart1;
+package com.nexus.chartc;
 
 import com.getcapacitor.BridgeActivity;
 
