@@ -17,7 +17,7 @@ Chart.register(ZoomPlugin, StreamingPlugin, gradient);
 
 
 export class Tab1Page {
-  // public serverUrl = "http://cies-western-eng.ca/sensor/";
+  // public serverUrl = "https://trinityaether.com/sensor/";
 
   public chartColors = [
     'rgb(255, 99, 132)',
@@ -49,7 +49,7 @@ export class Tab1Page {
 
   public chartType:string = "realtime";
 
-  // public url = "http://cies-western-eng.ca/sensor/routes/actions/getData.php";
+  // public url = "https://trinityaether.com/sensor/routes/actions/getData.php";
 
   constructor(
   ) {
@@ -100,7 +100,7 @@ export class Tab1Page {
     let table = "SN" + (chart.id + 1);
     let now = new Date().getTime();
 
-    await axios.get('http://cies-western-eng.ca/sensor/routes/actions/getData.php', {
+    await axios.get('https://trinityaether.com/sensor/routes/actions/getData.php', {
       params: {
         table: table,
         time: now.toString(),
@@ -142,7 +142,7 @@ export class Tab1Page {
     if(end < start){
       return;
     }
-    await axios.get('http://cies-western-eng.ca/sensor/routes/actions/getData.php', {
+    await axios.get('https://trinityaether.com/sensor/routes/actions/getData.php', {
       params: {
         table: table,
         starttime: start,
@@ -382,7 +382,7 @@ export class Tab1Page {
     var end = Date.now();
     for (var i = 0; i < 10; i++) {
       let table = "SN" + (i + 1);
-      await axios.get("http://cies-western-eng.ca/sensor/routes/actions/getData.php", {
+      await axios.get("https://trinityaether.com/sensor/routes/actions/getData.php", {
         params: {
           table: table,
           starttime: start,
