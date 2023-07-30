@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.nexus.chartc.MainActivity">
+    tools:context="com.nexus.chartt.MainActivity">
 
     <WebView
         android:layout_width="match_parent"
