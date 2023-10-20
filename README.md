@@ -1,0 +1,2 @@
+# ionic-chart-app
+IONIC/ANGULAR, CHART.JS, REALTIME CHART
