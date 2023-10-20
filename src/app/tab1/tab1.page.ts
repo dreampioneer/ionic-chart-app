@@ -17,7 +17,7 @@ Chart.register(ZoomPlugin, StreamingPlugin, gradient);
 
 
 export class Tab1Page {
-  // public serverUrl = "https://trinityaether.com/sensor/";
+  // public serverUrl = "http://cies-western-eng.ca/sensor/";
 
   public chartColors = [
     'rgb(255, 99, 132)',
@@ -49,7 +49,7 @@ export class Tab1Page {
 
   public chartType:string = "realtime";
 
-  // public url = "https://trinityaether.com/sensor/routes/actions/getData.php";
+  // public url = "http://cies-western-eng.ca/sensor/routes/actions/getData.php";
 
   constructor(
   ) {
@@ -100,7 +100,7 @@ export class Tab1Page {
     let table = "SN" + (chart.id + 1);
     let now = new Date().getTime();
 
-    await axios.get('https://trinityaether.com/sensor/routes/actions/getData.php', {
+    await axios.get('http://cies-western-eng.ca/sensor/routes/actions/getData.php', {
       params: {
         table: table,
         time: now.toString(),
@@ -142,7 +142,7 @@ export class Tab1Page {
     if(end < start){
       return;
     }
-    await axios.get('https://trinityaether.com/sensor/routes/actions/getData.php', {
+    await axios.get('http://cies-western-eng.ca/sensor/routes/actions/getData.php', {
       params: {
         table: table,
         starttime: start,
@@ -179,8 +179,8 @@ export class Tab1Page {
                 // backgroundColor: Utils.transparentize(borderColor, 0.5),
                 borderColor: borderColor,
                 fill: true,
-                lineTension: 0,
-                borderDash: [8, 4],
+                borderDash: [1,0],
+                borderWidth: 1,
                 data: [{x: 0, y: 0}],
                 gradient: {
                   backgroundColor: {
@@ -200,6 +200,11 @@ export class Tab1Page {
           },
           scales: {
             x: {
+              grid: {
+                color: '#a38686',
+                borderColor: '#a38686',
+                tickColor: '#a38686'
+              },
               type: 'realtime',
               realtime: {
                 unit: 'second',
@@ -207,13 +212,18 @@ export class Tab1Page {
                   second: 'YYYY-MM-DD HH:mm:ss'
                 },
                 tooltipFormat: 'YYYY-MM-DD HH:mm:ss',
-                duration: 20000,
+                duration: 50000,
                 refresh: 3000,
                 delay: 3000,
                 onRefresh: this.onRefresh
               }
             },
             y: {
+              grid: {
+                color: '#a38686',
+                borderColor: '#a38686',
+                tickColor: '#a38686'
+              },
               type: 'linear',
               display: true,
               // ticks: {
@@ -230,6 +240,11 @@ export class Tab1Page {
             intersect: false
           },
           plugins: {
+            legend: {
+              labels: {
+                color: 'white', // Change the legend label color to red
+              }
+            },
             zoom: {
               pan: {
                 enabled: true,
@@ -297,7 +312,21 @@ export class Tab1Page {
             text: 'Select Sensor'
           },
           scales: {
+            x: {
+              grid: {
+                color: '#a38686',
+                borderColor: '#a38686',
+                tickColor: '#a38686'
+              },
+              type: 'linear',
+              display: true,
+            },
             y: {
+              grid: {
+                color: '#a38686',
+                borderColor: '#a38686',
+                tickColor: '#a38686'
+              },
               type: 'linear',
               display: true,
             }
@@ -332,6 +361,11 @@ export class Tab1Page {
           // }
 		    },
         plugins: {
+          legend: {
+            labels: {
+              color: 'white', // Change the legend label color to red
+            }
+          },
           zoom: {
             pan: {
               enabled: true,
@@ -382,7 +416,7 @@ export class Tab1Page {
     var end = Date.now();
     for (var i = 0; i < 10; i++) {
       let table = "SN" + (i + 1);
-      await axios.get("https://trinityaether.com/sensor/routes/actions/getData.php", {
+      await axios.get("http://cies-western-eng.ca/sensor/routes/actions/getData.php", {
         params: {
           table: table,
           starttime: start,
