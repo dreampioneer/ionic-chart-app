@@ -26,3 +26,5 @@ Ionic Framework               : @ionic/angular 6.5.0<br>
    NodeJS : v16.15.0<br>
    npm    : 8.5.5<br>
    OS     : Windows 10<br>
+
+> From dreampioneer
